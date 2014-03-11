@@ -1,0 +1,84 @@
+extends layout
+
+block head
+  title mongo data visualizer :: dashboard
+
+block content
+  .row
+    .col-md-5.right-border
+
+      .row
+        form#new-db-form.form
+            .col-md-8.col-md-offset-4
+              p click here to create a
+              button#new-db-btn.btn.btn-primary(type="button") new database
+        
+      .form-container
+        form.form-horizontal.db-input-form
+          .form-group
+            label.col-md-4.control-label nick name
+            .col-md-8
+              input.form-control.db-nickname(name="databaseNickName" ,type="text" ,placeholder="nick name of database")
+          .form-group
+            label.col-md-4.control-label host
+            .col-md-8
+              input.form-control.db-host(name="databaseHost" ,type="text" ,placeholder="host url")
+          .form-group
+            label.col-md-4.control-label port
+            .col-md-8
+              input.form-control.db-port(name="databasePort" ,type="text" ,placeholder="port number")
+          .form-group
+            label.col-md-4.control-label monogo db name
+            .col-md-8
+              input.form-control.db-name(name="mongodbName" ,type="text" ,placeholder="mongo db name")
+          .form-group
+            .col-md-8.col-md-offset-4
+              button.btn.btn-sm.btn-primary.btn-in-row.btn-active-db(type="button") active
+              button.btn.btn-sm.btn-primary.btn-in-row.btn-edit-db(type="button") edit
+              button.btn.btn-sm.btn-primary.btn-in-row.btn-delete-db(type="button") delete
+
+      .form-container
+        form.form-horizontal.db-input-form
+          .form-group
+            label.col-md-4.control-label nick name
+            .col-md-8
+              input.form-control.db-nickname(name="databaseNickName" ,type="text" ,placeholder="nick name of database")
+          .form-group
+            label.col-md-4.control-label host
+            .col-md-8
+              input.form-control.db-host(name="databaseHost" ,type="text" ,placeholder="host url")
+          .form-group
+            label.col-md-4.control-label port
+            .col-md-8
+              input.form-control.db-port(name="databasePort" ,type="text" ,placeholder="port number")
+          .form-group
+            label.col-md-4.control-label monogo db name
+            .col-md-8
+              input.form-control.db-name(name="mongodbName" ,type="text" ,placeholder="mongo db name")
+          .form-group
+            .col-md-8.col-md-offset-4
+              button.btn.btn-sm.btn-primary.btn-in-row.btn-active-db(type="button") active
+              button.btn.btn-sm.btn-primary.btn-in-row.btn-edit-db(type="button") edit
+              button.btn.btn-sm.btn-primary.btn-in-row.btn-delete-db(type="button") delete
+
+
+    .col-md-7
+
+      p current mongo db: 
+        span#active-db-nickname
+
+      table.table.table-striped
+        th
+          td collection
+          td # of documents
+        tr
+          td dogs
+          td 224
+        tr
+          td cats
+          td 146
+        tr
+          td quockka
+          td 36
+
+

@@ -1,0 +1,55 @@
+
+@font-face {
+  font-family: museo;
+  src: url(/fonts/Museo_300_regular-webfont.woff);
+}
+
+body {
+  padding: 50px;
+}
+
+a,
+a:focus,
+a:hover {
+  color: #00B7FF;
+  border-radius: 10px;
+}
+
+.container {
+  background-color: #1C1C1C;
+  font-family: museo;
+  color: #F2F2F2;
+  border-radius: 15px;
+}
+
+label {
+  font-weight: normal;
+}
+
+.btn-in-row {
+  margin: 0 5px;
+}
+
+#new-db-btn {
+  margin-bottom: 15px;
+}
+
+.form-container
+{
+  padding: 10px 0;
+  border-top: 2px solid #F2F2F2;
+  font-size: 12px;
+}
+
+label {
+  margin-right: 0;
+  padding-right: 0 !important;
+}
+
+.right-border {
+  border-right: 2px solid #F2F2F2;
+}
+
+.row {
+  padding: 20px;
+}

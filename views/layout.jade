@@ -1,0 +1,34 @@
+doctype html
+html
+  head
+    link(rel='stylesheet', href='/stylesheets/style.css')
+    link(rel="stylesheet", href="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css")
+
+    block head
+
+  body
+
+    .container
+      nav.navbar.nav-default
+        .container-fluid.navbar-left
+          .navbar-header
+            button.navbar-toggle(type="button", data-toggle="collapes", data-target="#navbar-collapse-dashboard")
+              span.sr-only Toggle navigation
+              span.icon-bar
+              span.icon-bar
+              span.icon-bar
+            a.navbar-brand(href="/") mongo data visualizer
+
+        #navbar-collapse-dashboard.collapes.navbar-collapse
+          ul.nav.navbar-nav.navbar-right
+            li: a(href="/docs") docs
+            li: a(herf="/dashboard") dashboard
+            li: a(herf="/dataview") dataview
+
+
+
+      block content
+
+    script(src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.0/jquery.min.js")
+    script(src="/javascripts/backstretch.js")
+    script(src="http://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.1.1/js/bootstrap.min.js")
