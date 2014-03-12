@@ -9,76 +9,82 @@ block content
 
       .row
         form#new-db-form.form
-            .col-md-8.col-md-offset-4
-              p click here to create a
-              button#new-db-btn.btn.btn-primary(type="button") new database
-        
-      .form-container
-        form.form-horizontal.db-input-form
+            .col-md-10.col-md-offset-2
+              p click here to create a...
+              button.btn.btn-primary(type="submit") new database connection
+
+      .form-container.hide
+        p currently active mongodb
+        form.form-horizontal.db-data-form(name="dbDataForm")
           .form-group
             label.col-md-4.control-label nick name
             .col-md-8
-              input.form-control.db-nickname(name="databaseNickName" ,type="text" ,placeholder="nick name of database")
+              p.form-control-static.db-nickname-data my first mongo db
           .form-group
             label.col-md-4.control-label host
             .col-md-8
-              input.form-control.db-host(name="databaseHost" ,type="text" ,placeholder="host url")
+              p.form-control-static.db-host-data ://localhost
           .form-group
             label.col-md-4.control-label port
             .col-md-8
-              input.form-control.db-port(name="databasePort" ,type="text" ,placeholder="port number")
+              p.form-control-static.db-port-data :3000
           .form-group
             label.col-md-4.control-label monogo db name
             .col-md-8
-              input.form-control.db-name(name="mongodbName" ,type="text" ,placeholder="mongo db name")
+              p.form-control-static.db-name-data test
           .form-group
             .col-md-8.col-md-offset-4
-              button.btn.btn-sm.btn-primary.btn-in-row.btn-active-db(type="button") active
+              button.btn.btn-sm.btn-primary.btn-in-row.disabled(type="button") active
               button.btn.btn-sm.btn-primary.btn-in-row.btn-edit-db(type="button") edit
               button.btn.btn-sm.btn-primary.btn-in-row.btn-delete-db(type="button") delete
 
-      .form-container
-        form.form-horizontal.db-input-form
+        
+      .form-container.hide
+        form#db-input-form.form-horizontal(name="dbInputForm", method="post", action="/dashboard")
           .form-group
             label.col-md-4.control-label nick name
             .col-md-8
-              input.form-control.db-nickname(name="databaseNickName" ,type="text" ,placeholder="nick name of database")
+              input.form-control.db-nickname(name="databaseNickName" ,type="text" ,placeholder="ex: my awsome mammal database")
           .form-group
             label.col-md-4.control-label host
             .col-md-8
-              input.form-control.db-host(name="databaseHost" ,type="text" ,placeholder="host url")
+              input.form-control.db-host(name="databaseHost" ,type="text" ,placeholder="ex: ://localhost")
           .form-group
             label.col-md-4.control-label port
             .col-md-8
-              input.form-control.db-port(name="databasePort" ,type="text" ,placeholder="port number")
+              input.form-control.db-port(name="databasePort" ,type="text" ,placeholder="ex: :27017 (<<default)")
           .form-group
             label.col-md-4.control-label monogo db name
             .col-md-8
-              input.form-control.db-name(name="mongodbName" ,type="text" ,placeholder="mongo db name")
+              input.form-control.db-name(name="mongodbName" ,type="text" ,placeholder="myAwsomeMammalDatabase")
           .form-group
             .col-md-8.col-md-offset-4
-              button.btn.btn-sm.btn-primary.btn-in-row.btn-active-db(type="button") active
-              button.btn.btn-sm.btn-primary.btn-in-row.btn-edit-db(type="button") edit
-              button.btn.btn-sm.btn-primary.btn-in-row.btn-delete-db(type="button") delete
+              button#eneter-db.btn.btn-sm.btn-primary.btn-in-row(type="submit") submit
 
 
     .col-md-7
 
-      p current mongo db: 
-        span#active-db-nickname
-
-      table.table.table-striped
-        th
-          td collection
-          td # of documents
-        tr
-          td dogs
-          td 224
-        tr
-          td cats
-          td 146
-        tr
-          td quockka
-          td 36
+      
+      .col-md-10.col-md-offset-1
+        .header-container
+          h3 current mongo db: 
+          h4#active-db-nickname testdb
+      
+        table.table.table-bordered.hide
+          tr
+            th collection
+            th # of documents
+          tr
+            td dogs
+            td 224
+          tr
+            td cats
+            td 146
+          tr
+            td quockka
+            td 36
+          tr
+            td whateveryouwantgoesinhere
+            td 23456
 
 

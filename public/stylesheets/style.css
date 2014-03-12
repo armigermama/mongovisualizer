@@ -20,6 +20,7 @@ a:hover {
   font-family: museo;
   color: #F2F2F2;
   border-radius: 15px;
+  min-height: 80%;
 }
 
 label {
@@ -41,6 +42,10 @@ label {
   font-size: 12px;
 }
 
+.form-group {
+  margin-bottom: 5px !important;
+}
+
 label {
   margin-right: 0;
   padding-right: 0 !important;
@@ -52,4 +57,12 @@ label {
 
 .row {
   padding: 20px;
+}
+
+th {
+  font-weight: bold;
+}
+
+.header-container {
+  padding-bottom: 20px;
 }
