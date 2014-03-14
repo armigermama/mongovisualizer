@@ -1,3 +1,5 @@
+var DatabaseModel = require('../models/databaseModel.js')
+
 module.exports = {
 
   index: function(req, res) {

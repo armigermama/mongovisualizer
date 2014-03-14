@@ -13,34 +13,9 @@ block content
               p click here to create a...
               button.btn.btn-primary(type="submit") new database connection
 
+      
       .form-container.hide
-        p currently active mongodb
-        form.form-horizontal.db-data-form(name="dbDataForm")
-          .form-group
-            label.col-md-4.control-label nick name
-            .col-md-8
-              p.form-control-static.db-nickname-data my first mongo db
-          .form-group
-            label.col-md-4.control-label host
-            .col-md-8
-              p.form-control-static.db-host-data ://localhost
-          .form-group
-            label.col-md-4.control-label port
-            .col-md-8
-              p.form-control-static.db-port-data :3000
-          .form-group
-            label.col-md-4.control-label monogo db name
-            .col-md-8
-              p.form-control-static.db-name-data test
-          .form-group
-            .col-md-8.col-md-offset-4
-              button.btn.btn-sm.btn-primary.btn-in-row.disabled(type="button") active
-              button.btn.btn-sm.btn-primary.btn-in-row.btn-edit-db(type="button") edit
-              button.btn.btn-sm.btn-primary.btn-in-row.btn-delete-db(type="button") delete
-
-        
-      .form-container.hide
-        form#db-input-form.form-horizontal(name="dbInputForm", method="post", action="/dashboard")
+        form#db-input-form.form-horizontal(name="dbInputForm", method="post", action="/dashboard/add")
           .form-group
             label.col-md-4.control-label nick name
             .col-md-8
@@ -59,16 +34,41 @@ block content
               input.form-control.db-name(name="mongodbName" ,type="text" ,placeholder="myAwsomeMammalDatabase")
           .form-group
             .col-md-8.col-md-offset-4
-              button#eneter-db.btn.btn-sm.btn-primary.btn-in-row(type="submit") submit
+              button#eneter-db.btn.btn-sm.btn-primary.btn-in-row(type="submit") submit & activate
 
+      .form-container.hide.dbDataTemplate
+        p currently active mongodb
+        form.form-horizontal.db-data-form(name="dbDataForm")
+          .form-group
+            label.col-md-4.control-label nick name
+            .col-md-8
+              p.form-control-static.db-nickname-data 
+          .form-group
+            label.col-md-4.control-label host
+            .col-md-8
+              p.form-control-static.db-host-data 
+          .form-group
+            label.col-md-4.control-label port
+            .col-md-8
+              p.form-control-static.db-port-data 
+          .form-group
+            label.col-md-4.control-label monogo db name
+            .col-md-8
+              p.form-control-static.db-name-data 
+          .form-group
+            .col-md-8.col-md-offset-4
+              button.btn.btn-sm.btn-primary.btn-in-row.disabled(type="button") active
+              button.btn.btn-sm.btn-primary.btn-in-row.btn-edit-db(type="button") edit
+              button.btn.btn-sm.btn-primary.btn-in-row.btn-delete-db(type="button") delete
 
+        
     .col-md-7
 
       
       .col-md-10.col-md-offset-1
         .header-container
           h3 current mongo db: 
-          h4#active-db-nickname testdb
+          h4#active-db-nickname
       
         table.table.table-bordered.hide
           tr
