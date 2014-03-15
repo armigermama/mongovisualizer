@@ -12,23 +12,40 @@ var Db = require('mongodb').Db,
 
 var collectionModel = module.exports = {
 
-  activeDb: function(name, host, port, callback) {
+  activeDb: function(dbname, dbhost, dbport, callback) {
 
-    var db = new Db(name, new Server(host, port), {w: 0});
+    var db = new Db(dbname, new Server(dbhost, dbport), {w: 0});
       // Establish connection to db
     db.open(function(err, db) {
       assert.equal(null, err);
 
-      db.stats(function(err, stats) {
-        assert.equal(null, err);
-        assert.ok(stats != null);
+      db.collectionNames(function(err, names) {
+        assert.ok(names.length > 0);
+        var collectionNameCount = [];
+        console.log(names);
+        
+        for (var i=1; i<names.length; i++) {
+          var collectionName = names[i].name.slice(dbname.length+1);
+          var collection = db.collection(collectionName);
+          collection.count(function(err, count) {
+            assert.equal(null, err);
+            console.log('count: ', count);
 
-        callback(stats);
+            // collectionNameCount.push({
+            // collectionName: collectionCount
+            // })
+          });
+
+        } /* end of for collection names loop */
+        // console.log('collectionNameCount: ', collectionNameCount);
+
+        // callback(collectionNameCount);
 
         db.close();
       });
-    })
-  }
+     
+    }) /** end of db.open function **/
+  } /** end of activeDb method **/
 
 }
 
