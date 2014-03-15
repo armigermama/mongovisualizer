@@ -4,7 +4,7 @@ var databaseSchema = new mongoose.Schema({
 
   databaseNickName: String,
   databaseHost: String,
-  databasePort: String,
+  databasePort: Number,
   mongodbName: String
 
 });

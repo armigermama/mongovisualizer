@@ -7,13 +7,14 @@ $(function() {
 
     $('#db-input-form').closest('.form-container').removeClass('hide');
 
-  });
+  }); /** end of #new-db-form submit button event handler **/
 
   // click event for db-input-form
   $('#db-input-form').submit(function(e) {
     e.preventDefault();
     var count = 0;
 
+    // ajax to render the mongodb entered in db-input-form onto sbDataForm
     $.ajax({
       type: 'post',
       url: '/dashboard/add',
@@ -22,13 +23,12 @@ $(function() {
         console.log('#db-input-form data', data);
         ++count;
         var dbDataFormID = 'dbDataForm'.concat(count);
-        console.log('dbDataFormID', dbDataFormID);
-        console.log('.dbDataTemplate', $('.dbDataTemplate'));
 
         var newDbForm = $('.dbDataTemplate').
           clone().
           removeClass('dbDataTemplate').
-          addClass(dbDataFormID);
+          addClass(dbDataFormID).
+          attr('id', data._id);
 
         $('.dbDataTemplate').before(newDbForm);
 
@@ -45,13 +45,28 @@ $(function() {
           .find('.db-name-data')
           .text(data.mongodbName);
 
-        $('#'active-db-nickname).text(data.databaseNickName);
+        $('#active-db-nickname').text(data.databaseNickName);
         newDbForm.removeClass('hide');
 
-
-         
       }
-    });
-  });
+    }); /** end of #db-input-form post /dashboard/add ajax **/
+  }); /** end of #db-input-form submit event handler **/
 
-});
+  // click event to activate a mongodb
+  $(document).on('click','.btn-active-db', function(){
+
+    var dbID = $(this).closest('.form-container').attr('id');
+    console.log('dbID: ', dbID);
+
+    $.ajax({
+      type: 'post',
+      url: '/dashboard/active/' + dbID,
+      data: dbID,
+      Success: function(data) {
+        console.log('active db data: ', data);
+      }
+
+    }); /** end of #db-input-form post /dashboard/active/:id ajax **/
+  }); /** end of #db-input-form submit event handler **/
+
+}); /** end of on-loading jQuery function **/

@@ -15,23 +15,23 @@ block content
 
       
       .form-container.hide
-        form#db-input-form.form-horizontal(name="dbInputForm", method="post", action="/dashboard/add")
+        form#db-input-form.form-horizontal(name="dbInputForm")
           .form-group
             label.col-md-4.control-label nick name
             .col-md-8
-              input.form-control.db-nickname(name="databaseNickName" ,type="text" ,placeholder="ex: my awsome mammal database")
+              input.form-control.db-nickname(name="databaseNickName" ,type="text" ,value="Northwind", placeholder="ex: my awsome mammal database")
           .form-group
             label.col-md-4.control-label host
             .col-md-8
-              input.form-control.db-host(name="databaseHost" ,type="text" ,placeholder="ex: ://localhost")
+              input.form-control.db-host(name="databaseHost" ,type="text" ,value="localhost", placeholder="ex: localhost")
           .form-group
             label.col-md-4.control-label port
             .col-md-8
-              input.form-control.db-port(name="databasePort" ,type="text" ,placeholder="ex: :27017 (<<default)")
+              input.form-control.db-port(name="databasePort" ,type="text" ,value="27017")
           .form-group
             label.col-md-4.control-label monogo db name
             .col-md-8
-              input.form-control.db-name(name="mongodbName" ,type="text" ,placeholder="myAwsomeMammalDatabase")
+              input.form-control.db-name(name="mongodbName" ,type="text" ,value="Northwind", placeholder="myAwsomeMammalDatabase")
           .form-group
             .col-md-8.col-md-offset-4
               button#eneter-db.btn.btn-sm.btn-primary.btn-in-row(type="submit") submit & activate
@@ -57,7 +57,7 @@ block content
               p.form-control-static.db-name-data 
           .form-group
             .col-md-8.col-md-offset-4
-              button.btn.btn-sm.btn-primary.btn-in-row.disabled(type="button") active
+              button.btn.btn-sm.btn-primary.btn-in-row.btn-active-db(type="button") active
               button.btn.btn-sm.btn-primary.btn-in-row.btn-edit-db(type="button") edit
               button.btn.btn-sm.btn-primary.btn-in-row.btn-delete-db(type="button") delete
 

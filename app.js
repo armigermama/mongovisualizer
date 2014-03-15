@@ -42,7 +42,7 @@ app.get('/dashboard', DashboardController.index);
 app.post('/dashboard/add', DashboardController.addDb);
 
 //DASHBOARD - activate an existing database
-app.get('/dashboad/active/:id', DashboardController.activeDb);
+app.post('/dashboard/active/:id', DashboardController.activeDb);
 
 // DASHBOARD - edit existing database
 app.get('/dashboard/update/:id', DashboardController.editDb);
