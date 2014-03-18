@@ -34,32 +34,33 @@ var collectionModel = module.exports = {
       function(db, callback) {
         db.collectionNames(function(err, names) {
           assert.ok(names.length > 0);
-          console.log("names: ", names);
+          var names = names.map(function(n) {
+            return n.name.slice(dbname.length+1);
+          })
+          console.log('names array: ', names);
           callback(null, names);
         })
       },
 
       function(names, callback) {
-        nameCount =[];
+        var cnt = 1;
+        var nameCount = [];
         async.whilst(
-          function() { return nameCount.length < names.length },
+          function() { return cnt < names.length },
           function(cb) {
             for (var i=1; i<names.length; i++) {
-              var collectionName = names[i].name.slice(dbname.length+1);
-              console.log('outside collectionName: ', collectionName);
-              var collection = db.collection(collectionName);
-              collection.count(function(err, count) {
-                console.log('inside collectionName: ', collectionName);
-                var obj ={};
-                obj[collectionName] = count;
-                nameCount.push(obj);
-                console.log('obj: ', obj);
-                if (nameCount.length === names.length - 1) callback();
+              db.collection(names[i]).stats(function(err, stats) {
+                var obj = {};
+                cnt++;
+                obj[stats.ns.slice(dbname.length+1)] = stats.count;
+                nameCount.push( obj );
+                console.log('nameCount: ', nameCount);
+                if (nameCount.length === names.length - 1) cb();
               });
             }
           },
           function(err) {
-            console.log('whillst async nameCount: ', nameCount);
+            console.log('done');
           }
         );
         callback(null, nameCount);
