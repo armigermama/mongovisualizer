@@ -24,10 +24,9 @@ module.exports = {
     console.log('dbID: ', dbID);
 
     DatabaseModel.findById(dbID, function(err, doc) {
-      console.log(doc.mongodbName, doc.databaseHost, doc.databasePort);
-      CollectionModel.activeDb(doc.mongodbName, doc.databaseHost, doc.databasePort, function(data){
-        console.log('activeDb data: ', data);
-        res.send(data);
+      CollectionModel.activeDb(doc.mongodbName, doc.databaseHost, doc.databasePort, function(doc){
+        console.log('activeDb data: ', doc);
+        res.send(doc);
       });
       
       

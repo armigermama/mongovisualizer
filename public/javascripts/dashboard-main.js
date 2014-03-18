@@ -20,7 +20,6 @@ $(function() {
       url: '/dashboard/add',
       data: $('#db-input-form').serialize(),
       success: function(data) {
-        console.log('#db-input-form data', data);
         ++count;
         var dbDataFormID = 'dbDataForm'.concat(count);
 
@@ -56,13 +55,12 @@ $(function() {
   $(document).on('click','.btn-active-db', function(){
 
     var dbID = $(this).closest('.form-container').attr('id');
-    console.log('dbID: ', dbID);
 
     $.ajax({
       type: 'post',
       url: '/dashboard/active/' + dbID,
       data: dbID,
-      Success: function(data) {
+      success: function(data) {
         console.log('active db data: ', data);
       }
 
