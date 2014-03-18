@@ -44,9 +44,6 @@ app.post('/dashboard/add', DashboardController.addDb);
 //DASHBOARD - activate an existing database
 app.post('/dashboard/active/:id', DashboardController.activeDb);
 
-// DASHBOARD - edit existing database
-app.get('/dashboard/update/:id', DashboardController.editDb);
-
 //DASHBOARD - delete an existing database
 app.get('/dashboard/remove/:id', DashboardController.removeDb);
 

@@ -35,11 +35,6 @@ module.exports = {
 
   },
 
-  editDb: function(req, res) {
-
-
-  },
-
   removeDb: function(req, res) {
     var dbID = req.params.id;
 

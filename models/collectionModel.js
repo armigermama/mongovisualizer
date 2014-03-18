@@ -1,61 +1,76 @@
-    var Db = require('mongodb').Db,
-        MongoClient = require('mongodb').MongoClient,
-        format = require('util').format,
-        Server = require('mongodb').Server,
-        ReplSetServers = require('mongodb').ReplSetServers,
-        ObjectID = require('mongodb').ObjectID,
-        Binary = require('mongodb').Binary,
-        GridStore = require('mongodb').GridStore,
-        Grid = require('mongodb').Grid,
-        Code = require('mongodb').Code,
-        BSON = require('mongodb').pure().BSON,
-        assert = require('assert');
+var Db = require('mongodb').Db,
+    MongoClient = require('mongodb').MongoClient,
+    format = require('util').format,
+    Server = require('mongodb').Server,
+    ReplSetServers = require('mongodb').ReplSetServers,
+    ObjectID = require('mongodb').ObjectID,
+    Binary = require('mongodb').Binary,
+    GridStore = require('mongodb').GridStore,
+    Grid = require('mongodb').Grid,
+    Code = require('mongodb').Code,
+    BSON = require('mongodb').pure().BSON,
+    assert = require('assert');
+var async = require('async');
+// **************
+// establish namespace and  some properties to help organize the code
 
-    var collectionModel = module.exports = {
 
-      // helper function to create an array of objects containing collection names and
-      // # of documents in each collection in the activated mongoDB by active button click event
-      activeDb: function(dbname, dbhost, dbport, callback) {
+var collectionModel = module.exports = {
 
-        var db = new Db(dbname, new Server(dbhost, dbport), {w: 0});
-          // Establish connection to db
+  // helper function to create an array of objects containing collection names and
+  // # of documents in each collection in the activated mongoDB by active button click event
+  activeDb: function(dbname, dbhost, dbport, cb) {
+    var db = new Db(dbname, new Server(dbhost, dbport), {w: 0});
+    
+    async.waterfall([
+
+      function(callback) {
         db.open(function(err, db) {
           assert.equal(null, err);
+          callback(null, db);
+        });
+      },
 
-          // to get all the names of collections in the given mongoDB,
-          // this function will return the collection names in an array
-          db.collectionNames(function(err, names) {
-            assert.ok(names.length > 0);
+      function(db, callback) {
+        db.collectionNames(function(err, names) {
+          assert.ok(names.length > 0);
+          console.log("names: ", names);
+          callback(null, names);
+        })
+      },
 
-            // define the local variable for both collection names and # of documents to be pushed to
-            // this will be sent back to the client thru callback
-            var collectionNameCount = [];
-            console.log(names);
-            
-            // to loop thru the length of collection name array ([0] is skipped as it is used for db.index)
-            // and get the count of documents in each collection, push both name and count to collectionNameCount
+      function(names, callback) {
+        nameCount =[];
+        async.whilst(
+          function() { return nameCount.length < names.length },
+          function(cb) {
             for (var i=1; i<names.length; i++) {
               var collectionName = names[i].name.slice(dbname.length+1);
+              console.log('outside collectionName: ', collectionName);
               var collection = db.collection(collectionName);
-
               collection.count(function(err, count) {
-                // assert.equal(null, err);
-                console.log(err);
-                console.log('count: ', count);
-
-                collectionNameCount.push({
-                collectionName: count
-                });
+                console.log('inside collectionName: ', collectionName);
+                var obj ={};
+                obj[collectionName] = count;
+                nameCount.push(obj);
+                console.log('obj: ', obj);
+                if (nameCount.length === names.length - 1) callback();
               });
+            }
+          },
+          function(err) {
+            console.log('whillst async nameCount: ', nameCount);
+          }
+        );
+        callback(null, nameCount);
+      },
 
-            } /* end of for collection names loop */
-
-            callback(collectionNameCount);
-
-            db.close();
-          });
-         
-        }); /** end of db.open function **/
-      } /** end of activeDb method **/
-
-    };
+      function(nameCount, callback) {
+        db.close();
+        callback(null, nameCount);
+      }
+    ], function(err, result) {
+      console.log('aync result: ', result);
+    });
+  }
+};
