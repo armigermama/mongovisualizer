@@ -1,11 +1,13 @@
 var mongoose = require('mongoose');
 
+
+
 var databaseSchema = new mongoose.Schema({
 
   databaseNickName: String,
   databaseHost: String,
   databasePort: Number,
-  mongodbName: String
+  mongodbName: String,
 
 });
 
