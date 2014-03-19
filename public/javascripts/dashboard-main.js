@@ -64,11 +64,11 @@ $(function() {
       data: dbID,
       success: function(data) {
         console.log('active db data: ', data);
+        $('#dataviewLink').replaceWith('<li id="dataviewLink"><a class="lg-font", href="/dataview/' + data.dbID + '">dataview</a></li>');
         $('#collection-data-table').find('tbody').empty();
         $('#collection-data-table').find('tbody').append("<tr><th>collection</th><th># of documents</th></tr>");
-        for (var i=0; i<data.length; i++) {
-          $.each(data[i], function(key, value) {
-            console.log('key: ', key, 'value: ', value);
+        for (var i=0; i<data.doc.length; i++) {
+          $.each(data.doc[i], function(key, value) {
             var rowHTML = "<tr><td>" + key + "</td><td>" + value + "</td></tr>";
             $('#collection-data-table').find('tbody').append(rowHTML);
           });
