@@ -75,3 +75,13 @@ th {
 legend {
   color: #B2B2B2 !important;
 }
+
+.lg-font {
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.navbar-brand {
+  font-size: 24px !important;
+  font-weight: bold;
+}
