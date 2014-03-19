@@ -1,7 +1,7 @@
 
 @font-face {
   font-family: museo;
-  src: url(/fonts/Museo_300_regular-webfont.woff);
+  src: url(../fonts/museo_300_regular-webfont.woff);
 }
 
 body {
