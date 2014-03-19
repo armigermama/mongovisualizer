@@ -4,6 +4,10 @@ var CollectionModel = require('../models/collectionModel.js');
 
 module.exports = {
 
+  home: function(req, res) {
+    res.redirect('/dashboard');
+  },
+
   index: function(req, res) {
     res.render('dashboard');
   },

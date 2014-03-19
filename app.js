@@ -43,7 +43,7 @@ if (global.process.env.MONGOHQ_URL) {
 // ******************
 
 //INDEX - load page
-// app.get('/', IndexController.index);
+app.get('/', DashboardController.home);
 
 // DASHBOARD - load page
 app.get('/dashboard', DashboardController.index);

@@ -5,8 +5,10 @@ module.exports = {
 
   index: function(req, res) {
     var dbID = req.params.id;
-    console.log('dbID: ', dbID);
-    res.render('dataview');
+    DatabaseModel.findById(dbID, function(err, doc) {
+      res.send('dataview');
+    })
+    
   },
 
   getChart: function(req, res) {
