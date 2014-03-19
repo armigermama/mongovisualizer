@@ -8,6 +8,7 @@ var databaseSchema = new mongoose.Schema({
   databaseHost: String,
   databasePort: Number,
   mongodbName: String,
+  collectionNames: [String]
 
 });
 

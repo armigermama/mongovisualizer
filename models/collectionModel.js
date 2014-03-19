@@ -12,6 +12,7 @@ var Db = require('mongodb').Db,
     assert = require('assert');
 var async = require('async');
 var mongoose = require('mongoose');
+var DatabaseModel = require('./databaseModel.js');
 
 
 // function to open and return ONE object of opened mongo db by given dbname, host and port
@@ -31,6 +32,12 @@ var collectionNames = function(db, callback) {
     var names = names.map(function(n) {
       return n.name.slice(db.databaseName.length+1);
     });
+    DatabaseModel.findOneAndUpdate( 
+      { mongodbName: db.databaseName }, 
+      { collectionNames: names.slice(1)},
+      function(err, doc) {
+        console.log("findAndUpdate doc: ", doc);
+      });
     console.log('names array: ', names);
     callback(null, db, names);
   });
