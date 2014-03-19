@@ -5,38 +5,49 @@ block head
 
 block content
   .row
-    .col-md-4.right-border
-      form.form
-        .form-group
-          label select a collection
-          select#collection-select
-            option 1
-            option 2
-        .form-group
-          label select a chart
-          select#chart-type
-            option 1
-            option 2
-        .form-group
-          label sort by
-          select#sort-by
-            option descending
-            option ascending
-        .form-group
-          label group by
-          select#group-by
-            option 1
-            option 2
-        .form-group
-          label aggregation function
-          select#agg-function
-            option sum
-            option count
-        .form-group
-          label aggregation field
-          select#agg-field
-            option 1
-            option 2
+    .col-sm-4.right-border
 
-    .col-md-8
+        form.form(name="collectionForChart")
+          fieldset
+            legend #1 step
+            .form-group
+              label select a collection
+              select#collection-select.form-control
+                option 1
+                option 2
+            .form-group
+              button.btn.btn-primary.pull-right(tryp="submit") get collection data
+        
+        form.form(name="dataFormForChart")
+          fieldset
+            legend #2 step
+            .form-group
+              label select a chart
+              select#chart-type.form-control
+                option 1
+                option 2
+            .form-group
+              label sort by
+              select#sort-by.form-control
+                option descending
+                option ascending
+            .form-group
+              label group by
+              select#group-by.form-control
+                option 1
+                option 2
+            .form-group
+              label aggregation function
+              select#agg-function.form-control
+                option sum
+                option count
+            .form-group
+              label aggregation field
+              select#agg-field.form-control
+                option 1
+                option 2
+            .form-group
+              button.btn.btn-primary.pull-right(tryp="submit") get chart
+
+    .col-sm-8
       #chart

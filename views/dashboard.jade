@@ -5,65 +5,66 @@ block head
 
 block content
   .row
-    .col-md-5.right-border
+    .col-sm-5.right-border
 
       .row
         form#new-db-form.form
-            .col-md-10.col-md-offset-2
-              p click here to create a...
-              button.btn.btn-primary(type="submit") new database connection
+          fieldset
+            .col-sm-10.col-sm-offset-2
+              legend click here to create a...
+              button.btn.btn-primary.pull-right(type="submit") new database connection
 
       
       .form-container.hide
         form#db-input-form.form-horizontal(name="dbInputForm")
-          .form-group
-            label.col-md-4.control-label nick name
-            .col-md-8
+          .form-group.skinny-bottom
+            label.col-sm-4.control-label nick name
+            .col-sm-8
               input.form-control.db-nickname(name="databaseNickName" ,type="text" ,value="Northwind", placeholder="ex: my awsome mammal database")
-          .form-group
-            label.col-md-4.control-label host
-            .col-md-8
+          .form-group.skinny-bottom
+            label.col-sm-4.control-label host
+            .col-sm-8
               input.form-control.db-host(name="databaseHost" ,type="text" ,value="localhost", placeholder="ex: localhost")
-          .form-group
-            label.col-md-4.control-label port
-            .col-md-8
+          .form-group.skinny-bottom
+            label.col-sm-4.control-label port
+            .col-sm-8
               input.form-control.db-port(name="databasePort" ,type="text" ,value="27017")
-          .form-group
-            label.col-md-4.control-label monogo db name
-            .col-md-8
+          .form-group.skinny-bottom
+            label.col-sm-4.control-label monogo db name
+            .col-sm-8
               input.form-control.db-name(name="mongodbName" ,type="text" ,value="Northwind", placeholder="myAwsomeMammalDatabase")
-          .form-group
-            .col-md-8.col-md-offset-4
-              button#eneter-db.btn.btn-sm.btn-primary.btn-in-row(type="submit") submit & activate
+          .form-group.skinny-bottom
+            .col-sm-8.col-sm-offset-4
+              button#eneter-db.btn.btn-primary.btn-in-row.pull-right(type="submit") submit
 
       .form-container.hide.dbDataTemplate
-        p currently active mongodb
+        p your mongodb:
         form.form-horizontal.db-data-form(name="dbDataForm")
-          .form-group
-            label.col-md-4.control-label nick name
-            .col-md-8
+          .form-group.skinny-bottom
+            label.col-sm-4.control-label nick name
+            .col-sm-8
               p.form-control-static.db-nickname-data 
-          .form-group
-            label.col-md-4.control-label host
-            .col-md-8
+          .form-group.skinny-bottom
+            label.col-sm-4.control-label host
+            .col-sm-8
               p.form-control-static.db-host-data 
-          .form-group
-            label.col-md-4.control-label port
-            .col-md-8
+          .form-group.skinny-bottom
+            label.col-sm-4.control-label port
+            .col-sm-8
               p.form-control-static.db-port-data 
-          .form-group
-            label.col-md-4.control-label monogo db name
-            .col-md-8
+          .form-group.skinny-bottom
+            label.col-sm-4.control-label monogo db name
+            .col-sm-8
               p.form-control-static.db-name-data 
-          .form-group
-            .col-md-8.col-md-offset-4
-              button.btn.btn-sm.btn-primary.btn-in-row.btn-active-db(type="button") active
+          .form-group.skinny-bottom
+            .col-sm-8.col-sm-offset-4
+              button.btn.btn-primary.btn-in-row.pull-right.btn-active-db(type="button") active
 
         
-    .col-md-7
+    .col-sm-7
 
       
-      .col-md-10.col-md-offset-1
+      .col-sm-10.col-sm-offset-1
         .header-container
           h3 active mongo db collections:
       

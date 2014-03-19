@@ -39,10 +39,10 @@ label {
 {
   padding: 10px 0;
   border-top: 2px solid #F2F2F2;
-  font-size: 12px;
+  font-size: 14px;
 }
 
-.form-group {
+.skinny-bottom {
   margin-bottom: 5px !important;
 }
 
@@ -70,4 +70,8 @@ th {
 #chart {
   width: 90%;
   height: 500px;
+}
+
+legend {
+  color: #B2B2B2 !important;
 }

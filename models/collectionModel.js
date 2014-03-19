@@ -11,7 +11,7 @@ var Db = require('mongodb').Db,
     BSON = require('mongodb').pure().BSON,
     assert = require('assert');
 var async = require('async');
-
+var mongoose = require('mongoose');
 
 
 // function to open and return ONE object of opened mongo db by given dbname, host and port
@@ -21,7 +21,7 @@ var openDb = function(dbname, dbhost, dbport, callback) {
     assert.equal(null, err);
     callback(null, db);
     console.log(db);
-  })
+  });
 };
 
 var collectionNames = function(db, callback) {
