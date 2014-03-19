@@ -21,7 +21,6 @@ var openDb = function(dbname, dbhost, dbport, callback) {
   db.open(function(err, db) {
     assert.equal(null, err);
     callback(null, db);
-    console.log(db);
   });
 };
 
@@ -36,9 +35,8 @@ var collectionNames = function(db, callback) {
       { mongodbName: db.databaseName }, 
       { collectionNames: names.slice(1)},
       function(err, doc) {
-        console.log("findAndUpdate doc: ", doc);
+        // console.log("findAndUpdate doc: ", doc);
       });
-    console.log('names array: ', names);
     callback(null, db, names);
   });
 };
@@ -70,7 +68,7 @@ var collectionModel = module.exports = {
               obj[name] = count;
               cb(null, obj);
               // obj[stats.ns.slice(dbname.length+1)] = stats.count;
-              console.log('nameCount: ', obj);
+              // console.log('nameCount: ', obj);
             });
           };
         });
@@ -84,7 +82,6 @@ var collectionModel = module.exports = {
         callback(null, nameCount);
       }
     ], function(err, result) {
-      console.log('aync result: ', result);
       cb(result);
     });
   }
