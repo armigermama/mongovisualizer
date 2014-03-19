@@ -8,6 +8,7 @@ var http = require('http');
 var path = require('path');
 var mongoose = require('mongoose');
 var DashboardController = require('./controllers/dashboardController.js');
+var DataviewController = require('./controllers/dataviewController.js');
 
 // connect to mongoose
 mongoose.connect('mongodb://localhost/visualizer');
@@ -35,6 +36,9 @@ if ('development' == app.get('env')) {
 // routes
 // ******************
 
+//INDEX - load page
+// app.get('/', IndexController.index);
+
 // DASHBOARD - load page
 app.get('/dashboard', DashboardController.index);
 
@@ -45,9 +49,13 @@ app.post('/dashboard/add', DashboardController.addDb);
 app.post('/dashboard/active/:id', DashboardController.activeDb);
 
 //DASHBOARD - delete an existing database
-app.get('/dashboard/remove/:id', DashboardController.removeDb);
+// app.get('/dashboard/remove/:id', DashboardController.removeDb);
 
+//DATAVIEW - load page
+app.get('/dataview', DataviewController.index);
 
+// //DATACVIEW - load data for chart
+app.post('/dataview', DataviewController.getChart);
 
 http.createServer(app).listen(app.get('port'), function(){
   console.log('Express server listening on port ' + app.get('port'));

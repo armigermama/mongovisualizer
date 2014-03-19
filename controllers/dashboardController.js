@@ -24,7 +24,7 @@ module.exports = {
     console.log('dbID: ', dbID);
 
     DatabaseModel.findById(dbID, function(err, doc) {
-      CollectionModel.activeDb(doc.mongodbName, doc.databaseHost, doc.databasePort, function(doc){
+      CollectionModel.activeDbCollections(doc.mongodbName, doc.databaseHost, doc.databasePort, function(doc){
         console.log('activeDb data: ', doc);
         res.send(doc);
       });
@@ -32,17 +32,6 @@ module.exports = {
       
     });
 
-  },
-
-  removeDb: function(req, res) {
-    var dbID = req.params.id;
-
-    DatabaseModel.remove( {_id: dbID} , function(err, doc) {
-      res.doc(err);
-    });
-
   }
-
-
 
 };

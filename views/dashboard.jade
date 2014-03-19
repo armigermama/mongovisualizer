@@ -58,7 +58,6 @@ block content
           .form-group
             .col-md-8.col-md-offset-4
               button.btn.btn-sm.btn-primary.btn-in-row.btn-active-db(type="button") active
-              button.btn.btn-sm.btn-primary.btn-in-row.btn-delete-db(type="button") delete
 
         
     .col-md-7
@@ -66,24 +65,11 @@ block content
       
       .col-md-10.col-md-offset-1
         .header-container
-          h3 current mongo db: 
-          h4#active-db-nickname
+          h3 active mongo db collections:
       
-        table.table.table-bordered.hide
+        table#collection-data-table.table.table-bordered.hide
           tr
             th collection
             th # of documents
-          tr
-            td dogs
-            td 224
-          tr
-            td cats
-            td 146
-          tr
-            td quockka
-            td 36
-          tr
-            td whateveryouwantgoesinhere
-            td 23456
 
 

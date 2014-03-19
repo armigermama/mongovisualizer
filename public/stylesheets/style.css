@@ -66,3 +66,8 @@ th {
 .header-container {
   padding-bottom: 20px;
 }
+
+#chart {
+  width: 90%;
+  height: 500px;
+}

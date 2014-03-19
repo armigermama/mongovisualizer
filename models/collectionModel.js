@@ -11,17 +11,29 @@ var Db = require('mongodb').Db,
     BSON = require('mongodb').pure().BSON,
     assert = require('assert');
 var async = require('async');
-// **************
-// establish namespace and  some properties to help organize the code
 
 
-// function to open and return an object of opened mongodb by given dbname, host and port
+
+// function to open and return ONE object of opened mongo db by given dbname, host and port
 var openDb = function(dbname, dbhost, dbport, callback) {
   var db = new Db(dbname, new Server(dbhost, dbport), {w: 0});
   db.open(function(err, db) {
     assert.equal(null, err);
     callback(null, db);
+    console.log(db);
   })
+};
+
+var collectionNames = function(db, callback) {
+  db.collectionNames(function(err, names) {
+    assert.equal(null, err);
+    assert.ok(names.length > 0);
+    var names = names.map(function(n) {
+      return n.name.slice(db.databaseName.length+1);
+    });
+    console.log('names array: ', names);
+    callback(null, db, names);
+  });
 };
 
 
@@ -30,8 +42,9 @@ var collectionModel = module.exports = {
   // helper function to create an array of objects containing collection names and
   // # of documents in each collection in the activated mongoDB by active button click event
   openDb: openDb,
+  collectionNames: collectionNames,
 
-  activeDb: function(dbname, dbhost, dbport, cb) {
+  activeDbCollections: function(dbname, dbhost, dbport, cb) {
     
     async.waterfall([
 
@@ -39,17 +52,7 @@ var collectionModel = module.exports = {
         openDb(dbname, dbhost, dbport, callback);
       },
 
-      function(db, callback) {
-        db.collectionNames(function(err, names) {
-          assert.equal(null, err);
-          assert.ok(names.length > 0);
-          var names = names.map(function(n) {
-            return n.name.slice(dbname.length+1);
-          })
-          console.log('names array: ', names);
-          callback(null, db, names);
-        })
-      },
+      collectionNames,
 
       function(db, names, callback) {
         var nameCountFunctions = names.slice(1).map(function(name) {

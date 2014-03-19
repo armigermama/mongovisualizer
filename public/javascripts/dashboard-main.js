@@ -52,18 +52,30 @@ $(function() {
   }); /** end of #db-input-form submit event handler **/
 
   // click event to activate a mongodb
-  $(document).on('click','.btn-active-db', function(){
-
+  $(document).on('click','.btn-active-db', function(e){
+    e.preventDefault();
     var dbID = $(this).closest('.form-container').attr('id');
-
+    $('.btn-active-db').removeClass('btn-success').addClass('btn-primary');
+    $(this).removeClass('btn-primary').addClass('btn-success');
+    
     $.ajax({
       type: 'post',
       url: '/dashboard/active/' + dbID,
       data: dbID,
       success: function(data) {
         console.log('active db data: ', data);
+        $('#collection-data-table').find('tbody').empty();
+        $('#collection-data-table').find('tbody').append("<tr><th>collection</th><th># of documents</th></tr>");
+        for (var i=0; i<data.length; i++) {
+          $.each(data[i], function(key, value) {
+            console.log('key: ', key, 'value: ', value);
+            var rowHTML = "<tr><td>" + key + "</td><td>" + value + "</td></tr>";
+            $('#collection-data-table').find('tbody').append(rowHTML);
+          });
+        }
+        
+        $('#collection-data-table').removeClass('hide');
       }
-
     }); /** end of #db-input-form post /dashboard/active/:id ajax **/
   }); /** end of #db-input-form submit event handler **/
 
