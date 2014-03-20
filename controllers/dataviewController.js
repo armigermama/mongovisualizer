@@ -18,6 +18,7 @@ module.exports = {
   getCollectionData: function(req, res) {
     var collectionName = Object.keys(req.body)[0];
     DataviewModel.uniqueKeys(collectionName, function(err, keys) {
+      if (err) {console.log('DataviewControl err: ', err);}
       console.log('keys back in Controller', keys);
       res.send(keys);
     });

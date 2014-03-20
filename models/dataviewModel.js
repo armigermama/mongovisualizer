@@ -15,7 +15,7 @@ var async = require('async');
 var dataviewModel = module.exports = {
 
 	uniqueKeys: function(collectionName, cb) {
-		var keys = [];
+		
 
     Db.connect('mongodb://heroku:Batting1@oceanic.mongohq.com:10050/app23167815', function(err, db) {
       assert.equal(null, err);
@@ -25,32 +25,31 @@ var dataviewModel = module.exports = {
           var collection = db.collection(collectionName);
           collection.find().toArray(function(err, collectionArray) {
             console.log('collectionArray: ', collectionArray);
-            if (err) {console.log(err);}
-            callback(db, collectionArray);
+            if (err) {console.log('get collection err: ', err);}
+            callback(null, collectionArray);
           });
         },
 
         function(collectionArray, callback) {
+          var keys = [];
           for (var i=0; i<collectionArray.length; i++) {
             for (var key in collectionArray[i]) {
               if (keys.indexOf(key) === -1) {
-                console.log('key inside loop: ', key);
+                // console.log('key inside loop: ', key);
                 keys.push(key);
               }
             }
           }
           console.log('keys: ', keys);
-          callback(db, keys);
-        },
-        function(keys, callback) {
-          callback(keys);
+          callback(null, keys);
         }
         ], function(err, result) {
           console.log('waterfall async result: ', result);
-          cb(result);
+          db.close();
+          cb(err, result);
         }
       );
-    db.close();
+    
     });
   },
 
