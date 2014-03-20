@@ -12,7 +12,7 @@ block content
             legend #1 step
             .form-group
               label select a collection
-              select#collection-select.form-control
+              select#collection-select.form-control(name="collectionName")
                 option ---> click here
                 for collectionName in collectionNames
                   option #{collectionName}
@@ -26,16 +26,15 @@ block content
               label select a chart
               select#chart-type.form-control
                 option column
-                option 2
             .form-group
               label sort by
               select#sort-by.form-control
                 option descending
                 option ascending
             .form-group
-              label group by
-              select#group-by.form-control
-                option 1
+              label aggregation field
+              select#agg-field.form-control
+                option ---> click here
                 option 2
             .form-group
               label aggregation function
@@ -43,9 +42,9 @@ block content
                 option sum
                 option count
             .form-group
-              label aggregation field
-              select#agg-field.form-control
-                option 1
+              label group by
+              select#group-by.form-control
+                option ---> click here
                 option 2
             .form-group
               button.btn.btn-primary.pull-right(tryp="submit") get chart

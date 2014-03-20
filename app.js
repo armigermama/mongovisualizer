@@ -60,8 +60,11 @@ app.post('/dashboard/active/:id', DashboardController.activeDb);
 //DATAVIEW - load page
 app.get('/dataview/:id', DataviewController.index);
 
+//DATAVIEW - load unique keys
+app.post('/dataview/query', DataviewController.getCollectionData);
+
 // //DATACVIEW - load data for chart
-app.post('/dataview/:id', DataviewController.getChart);
+app.post('/dataview/chart', DataviewController.getChart);
 
 http.createServer(app).listen(app.get('port'), function(){
   console.log('Express server listening on port ' + app.get('port'));
