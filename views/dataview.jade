@@ -7,14 +7,15 @@ block content
   .row
     .col-sm-4.right-border
 
-        form.form(name="collectionForChart")
+        form.form#form-collection-for-chart(name="collectionForChart")
           fieldset
             legend #1 step
             .form-group
               label select a collection
               select#collection-select.form-control
-                option 1
-                option 2
+                option ---> click here
+                for collectionName in collectionNames
+                  option #{collectionName}
             .form-group
               button.btn.btn-primary.pull-right(tryp="submit") get collection data
         
@@ -24,7 +25,7 @@ block content
             .form-group
               label select a chart
               select#chart-type.form-control
-                option 1
+                option column
                 option 2
             .form-group
               label sort by

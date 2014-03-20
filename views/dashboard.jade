@@ -24,15 +24,15 @@ block content
           .form-group.skinny-bottom
             label.col-sm-4.control-label host
             .col-sm-8
-              input.form-control.db-host(name="databaseHost" ,type="text" ,value="localhost", placeholder="ex: localhost")
+              input.form-control.db-host(name="databaseHost" ,type="text" ,value="oceanic.mongohq.com", placeholder="ex: localhost")
           .form-group.skinny-bottom
             label.col-sm-4.control-label port
             .col-sm-8
-              input.form-control.db-port(name="databasePort" ,type="text" ,value="27017")
+              input.form-control.db-port(name="databasePort" ,type="text" ,value="10050")
           .form-group.skinny-bottom
             label.col-sm-4.control-label monogo db name
             .col-sm-8
-              input.form-control.db-name(name="mongodbName" ,type="text" ,value="Northwind", placeholder="myAwsomeMammalDatabase")
+              input.form-control.db-name(name="mongodbName" ,type="text" ,value="app23167815", placeholder="myAwsomeMammalDatabase")
           .form-group.skinny-bottom
             .col-sm-8.col-sm-offset-4
               button#eneter-db.btn.btn-primary.btn-in-row.pull-right(type="submit") submit
@@ -66,11 +66,11 @@ block content
       
       .col-sm-10.col-sm-offset-1
         .header-container
-          h3 active mongo db collections:
+          h3#active-header.hide active mongo db collections:
       
         table#collection-data-table.table.table-bordered.hide
           tr
             th collection
             th # of documents
-
+    
 

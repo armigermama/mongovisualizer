@@ -74,7 +74,7 @@ $(function() {
           });
         }
         
-        $('#collection-data-table').removeClass('hide');
+        $('#collection-data-table, #active-header').removeClass('hide');
       }
     }); /** end of #db-input-form post /dashboard/active/:id ajax **/
   }); /** end of #db-input-form submit event handler **/

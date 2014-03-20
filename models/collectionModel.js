@@ -16,9 +16,10 @@ var DatabaseModel = require('./databaseModel.js');
 
 
 // function to open and return ONE object of opened mongo db by given dbname, host and port
-var openDb = function(dbname, dbhost, dbport, callback) {
-  var db = new Db(dbname, new Server(dbhost, dbport), {w: 0});
-  db.open(function(err, db) {
+var openDb = function(dbname, dbhost, dbport, username, password, callback) {
+  var connectionString = "mongodb://" + username + ":" + password + "@" + dbhost + ":" + dbport + "/" + dbname;
+  console.log('connectionString: ',connectionString);
+  Db.connect(connectionString, function(err, db) {
     assert.equal(null, err);
     callback(null, db);
   });
@@ -35,7 +36,7 @@ var collectionNames = function(db, callback) {
       { mongodbName: db.databaseName }, 
       { collectionNames: names.slice(1)},
       function(err, doc) {
-        // console.log("findAndUpdate doc: ", doc);
+        console.log("findAndUpdate doc: ", doc);
       });
     callback(null, db, names);
   });
@@ -49,12 +50,12 @@ var collectionModel = module.exports = {
   openDb: openDb,
   collectionNames: collectionNames,
 
-  activeDbCollections: function(dbname, dbhost, dbport, cb) {
+  activeDbCollections: function(dbname, dbhost, dbport, username, password, cb) {
     
     async.waterfall([
 
       function(callback) {
-        openDb(dbname, dbhost, dbport, callback);
+        openDb(dbname, dbhost, dbport, username, password, callback);
       },
 
       collectionNames,

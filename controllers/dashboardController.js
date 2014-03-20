@@ -26,7 +26,7 @@ module.exports = {
   activeDb: function(req, res) {
     var dbID = req.params.id;
     DatabaseModel.findById(dbID, function(err, doc) {
-      CollectionModel.activeDbCollections(doc.mongodbName, doc.databaseHost, doc.databasePort, function(doc){
+      CollectionModel.activeDbCollections(doc.mongodbName, doc.databaseHost, doc.databasePort, 'heroku', 'Batting1', function(doc){
         res.send( {doc: doc, dbID: dbID});
       });
       
