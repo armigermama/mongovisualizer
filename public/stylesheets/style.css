@@ -84,3 +84,7 @@ legend {
   font-size: 24px !important;
   font-weight: bold;
 }
+
+#chart-container {
+  padding-top: 30px;
+}
